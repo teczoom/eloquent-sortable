@@ -138,6 +138,13 @@ $myModel->moveToStart();
 $myModel->moveToEnd();
 ```
 
+You can move a model after or before another one:
+
+```php
+$myModel->moveBefore($anotherModel);
+$myModel->moveAfter($anotherModel);
+```
+
 You can swap the order of two models:
 
 ```php 
