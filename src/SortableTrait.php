@@ -138,10 +138,14 @@ trait SortableTrait
 
         $orderColumnName = $this->determineOrderColumnName();
 
+        $oldOrder = $this->$orderColumnName;
+
         $this->$orderColumnName = $firstModel->$orderColumnName;
         $this->save();
 
-        $this->buildSortQuery()->where($this->getKeyName(), '!=', $this->id)->increment($orderColumnName);
+        $this->buildSortQuery()->where($this->getKeyName(), '!=', $this->id)
+            ->where($orderColumnName, '<', $oldOrder)
+            ->increment($orderColumnName);
 
         return $this;
     }
